@@ -47,19 +47,32 @@ other files (like the "-interface" or frontend files).
 
 4. add `{"esversion": 6}` to .jshintrc
 
-5. `$ bower init`
+5. create local .gitignore file and add the following entries:
+  ```
+  node_modules/
+  build/
+  tmp/
+  bower_components/
+  *.css.map
+  .sass-cache/
 
-6. `$ node_modules/.bin/jasmine init`
+  ```
 
-7. in package.JSON add the following **(unless you're going to use Karma)**:
+6. Initialize bower in the command line with `$ bower init`
+
+7. Install bower modules from command line with the following command: `$ bower install jquery bootstrap --save`
+
+8. `$ node_modules/.bin/jasmine init`
+
+9. in package.JSON add the following **(unless you're going to use Karma)**:
     ```
     "scripts": {
       "test": "jasmine"
     }
     ```
-8. `$ karma init` in the project directory
+10. `$ karma init` in the project directory
 
-9. Add the following to karma.conf.js (includes Babelify transform for Browserify):
+11. Add the following to karma.conf.js (includes Babelify transform for Browserify):
     ```
     module.exports = function(config) {
       config.set({
@@ -100,16 +113,16 @@ other files (like the "-interface" or frontend files).
     }
     ```
 
-10. Add the following to package.JSON:
+12. Add the following to package.JSON:
     ```
     "scripts" : {
       "test" : "karma start karma.conf.js"
     }
     ```
 
-11. Add the following tasks to gulpfile:
+13. Add the following tasks to gulpfile:
 
-    1. Import `gulp`, `browserify`, `viny-source-stream`, and `babelify` at top of gulp file:
+    1. Import `gulp`, `browserify`, `vinyl-source-stream`, and `babelify` at top of gulp file:
         ```
         var gulp = require('gulp');
         var browserify = require('browserify');
@@ -119,7 +132,7 @@ other files (like the "-interface" or frontend files).
       Add `jsBrowserify` task to gulpfile:
         ```
         gulp.task('jsBrowserify', ['concatInterface'], function() {
-          return browserify({ entries: ['.tmp/allConcat.js']})
+          return browserify({ entries: ['./tmp/allConcat.js']})
             .transform(babelify.configure({
               presets: ["es2015"]
             }))
@@ -170,7 +183,7 @@ other files (like the "-interface" or frontend files).
       gulp.task('jshint', function(){
         return gulp.src(['js/*.js'])
           .pipe(jshint())
-          .pipe(jshint.reporter('defualt'));
+          .pipe(jshint.reporter('default'));
       });
       ```
 
@@ -178,12 +191,14 @@ other files (like the "-interface" or frontend files).
       ```
       var browserSync = require('browser-sync').create();
       var lib = require('bower-files') ({
-        "overrides":{
-          "main": [
-            "less/bootstrap.less",
-            "dist/css/bootstrap.css",
-            "dist/js/bootstrap.js"
-          ]
+        "overrides" : {
+          "bootstrap" : {
+            "main": [
+              "less/bootstrap.less",
+              "dist/css/bootstrap.css",
+              "dist/js/bootstrap.js"
+            ]
+          }
         }
       });
       var sass = require('gulp-sass');

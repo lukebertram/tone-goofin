@@ -3,7 +3,7 @@
   <head>
     <script src="build/js/vendor.min.js" charset="utf-8"></script>
     <script src="build/js/app.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="css/build.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/build.css"> -->
     <meta charset="utf-8">
     <title>JavaScript Template</title>
   </head>
@@ -14,17 +14,13 @@
         <div class="col-sm-6">
           <h3>Input</h3>
           <div class="formgroup">
-            <form id="test-form">
-              <label for="test-input"></label>
-              <input type="text" id="test-input">
+            <form id="bpm-form">
+              <label for="bpm-input">BPM</label>
+              <input type="text" id="bpm-input">
               <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </form><br/>
+            <button id="toggle-play">START/STOP</button>
           </div>
-        </div>
-        <!-- OUTPUT LIST -->
-        <div class="col-sm-6">
-          <h3>Output</h3>
-          <ul id="test-output"></ul>
         </div>
 
       </div> <!-- end of row -->

@@ -1,7 +1,9 @@
 
 node_modules/
 build/
+build/*
 tmp/
+tmp/*
 bower_components/
 *.css.map
 .sass-cache/

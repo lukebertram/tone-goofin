@@ -1,4 +1,4 @@
-import { TestClass } from './../js/template-logic.js';
+import { TestClass } from './../js/toneTest-logic.js';
 const testArray = [];
 $(document).ready(function(){
   $('#test-form').submit(function(event){
